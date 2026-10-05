@@ -1,61 +1,56 @@
-
 package model;
 
-public final class Barang {
+public class Barang {
     private String kode;
     private String nama;
     private int jumlahTersedia;
     
     public Barang(String kode, String nama, int jumlahTersedia) {
         if (kode == null || kode.trim().isEmpty()) {
-            throw new IllegalArgumentException("KOde barang wajib diisi.");
+            throw new IllegalArgumentException("Kode barang wajib diisi.");
         }
         if (nama == null || nama.trim().isEmpty()) {
-            throw new IllegalArgumentException("Nama barang wajib diisis.");
+            throw new IllegalArgumentException("Nama barang wajib diisi.");
         }
         if (jumlahTersedia < 0) {
             throw new IllegalArgumentException("Jumlah awal tidak boleh negatif.");
         }
         this.kode = kode.trim();
-        this.kode = nama.trim();
-        this.jumlahTersedia = jumlahTersedia();
+        this.nama = kode.trim();
+        this.jumlahTersedia = jumlahTersedia;
     }
-    
     public String getKode() {
         return kode;
     }
-    
     public String getNama() {
         return nama;
     }
-    
     public int getJumlahTersedia() {
         return jumlahTersedia;
     }
-    
-    public int jumlahTersedia() {
-        return jumlahTersedia;
-    }
-    
     public void pinjam(int jumlah) {
         if (jumlah <= 0) {
             throw new IllegalArgumentException("Jumlah pinjam harus positif.");
-           }
-        if (jumlah <= 0){
+        }
+        if (jumlah > jumlahTersedia) {
             throw new IllegalArgumentException("Barang tersedia tidak mencukupi.");
         }
         jumlahTersedia -= jumlah;
-        }
-        public void kembalikan(int jumlah){
+    }
+    
+    public void kembalikan(int jumlah) {
         if (jumlah <= 0) {
-           throw new IllegalArgumentException("jumlah kembali harus positif.");
+            throw new IllegalArgumentException("Jumlah kembali harus positif.");
         }
-        if (jumlah > Integer.MAX_VALUE - jumlahTersedia){
-         throw new IllegalArgumentException("Jumlah melebihi kapasitas int.");
+        if (jumlah > Integer.MAX_VALUE - jumlahTersedia) {
+            throw new IllegalArgumentException("Jumlah melebihi kapasitas int.");
         }
         jumlahTersedia += jumlah;
-        
     }
 }
-    
-
+            
+        
+        
+                   
+        
+        
